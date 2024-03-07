@@ -1,0 +1,22 @@
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+
+# Ignore environment-specific files
+.env
+
+# Ignore Docker files
+.dockerignore
+docker-compose.yml
+
+# Ignore system and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore dependencies
+venv/
+
+# Ignore images directory
+./Training/PlantVillage/
