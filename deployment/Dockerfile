@@ -14,7 +14,7 @@ COPY model/ /app/model/
 COPY requirements.txt /app/
 
 # Install any needed dependencies specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install tensorflow==2.7.0 numpy==1.21.5 Flask==2.0.1 Flask-Cors==3.1.1
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
