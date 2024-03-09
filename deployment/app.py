@@ -8,10 +8,10 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)  # Enable CORS for your Flask app
 
-# Load the trained model
-model_version = 1
-model_path = f"./model/{model_version}"
-loaded_model = load_model(model_path)
+# # Load the trained model
+# model_version = 1
+# model_path = f"./model/{model_version}"
+# loaded_model = load_model(model_path)
 
 # Define a route to handle image classification requests
 @app.route("/predict", methods=["POST"])
@@ -35,12 +35,12 @@ def predict():
     img_array = np.expand_dims(img_array, axis=0)
     
     # Make predictions
-    predictions = loaded_model.predict(img_array)
-    predicted_class = np.argmax(predictions)
-    confidence=round(100*(np.max(predictions[0])),2)
+    # predictions = loaded_model.predict(img_array)
+    # predicted_class = np.argmax(predictions)
+    # confidence=round(100*(np.max(predictions[0])),2)
     
     # Return the predicted class
-    return jsonify({"class": int(predicted_class), "label": class_names[int(predicted_class)], "confidence": confidence})
+    return jsonify({"class":img_size, "label": 'class_names[int(predicted_class)]', "confidence": 'confidence'})
 
 if __name__ == "__main__":
     app.run(debug=True)
