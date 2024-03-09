@@ -14,7 +14,7 @@ COPY model/ /app/model/
 COPY requirements.txt /app/
 
 # Install any needed dependencies specified in requirements.txt
-RUN pip install tensorflow==2.10.0 protobuf==3.19.5 numpy==1.21.5 Flask Flask-Cors
+RUN pip install tensorflow-cpu==2.10.0 protobuf==3.19.5 numpy==1.21.5 Flask Flask-Cors
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
