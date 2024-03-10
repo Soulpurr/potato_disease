@@ -3,3 +3,4 @@ protobuf
 numpy
 Flask  
 Flask-Cors
+Pillow
