@@ -35,12 +35,12 @@ def predict():
     img_array = np.expand_dims(img_array, axis=0)
     
     # Make predictions
-    #predictions = loaded_model.predict(img_array)
-    # predicted_class = np.argmax(predictions)
-    # confidence=round(100*(np.max(predictions[0])),2)
+    predictions = loaded_model.predict(img_array)
+    predicted_class = np.argmax(predictions)
+    confidence=round(100*(np.max(predictions[0])),2)
     
     # Return the predicted class
-    return jsonify({"class":img_size, "label": 'class_names[int(predicted_class)]', "confidence": 'confidence'})
+    return jsonify({"class":predicted_class, "label": class_names[int(predicted_class)], "confidence": confidence})
 
 if __name__ == "__main__":
         app.run(host='0.0.0.0', port=4000)
