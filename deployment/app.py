@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
 import numpy as np
+from PIL import Image
 import io
 from flask_cors import CORS
+from keras.models import load_model
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for your Flask app
@@ -30,8 +30,17 @@ def predict():
 
     # Preprocess the image
     img_size = 256
-    img = image.load_img(io.BytesIO(file.read()), target_size=(img_size, img_size))
-    img_array = image.img_to_array(img)
+    
+    # Load the image using Pillow
+    img = Image.open(io.BytesIO(file.read()))
+
+    # Resize the image
+    img = img.resize((img_size, img_size))
+
+    # Convert the image to a numpy array
+    img_array = np.array(img)
+
+    # Add an extra dimension to match the expected input shape (batch size of 1)
     img_array = np.expand_dims(img_array, axis=0)
     
     # Make predictions
@@ -40,7 +49,7 @@ def predict():
     confidence=round(100*(np.max(predictions[0])),2)
     
     # Return the predicted class
-    return jsonify({"class":predicted_class, "label": class_names[int(predicted_class)], "confidence": confidence})
+    return jsonify({"class":int(predicted_class), "label": class_names[int(predicted_class)], "confidence": confidence})
 
 if __name__ == "__main__":
         app.run(host='0.0.0.0', port=4000)
