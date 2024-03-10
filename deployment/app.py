@@ -43,4 +43,4 @@ def predict():
     return jsonify({"class":img_size, "label": 'class_names[int(predicted_class)]', "confidence": 'confidence'})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+        app.run(host='0.0.0.0', port=4000)
